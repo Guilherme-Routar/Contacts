@@ -12,26 +12,26 @@ int stringToInt(string str);
 ContactsManager::ContactsManager() {
 
 	try {
-		vector<vector<string> > vec = readContacts();
-		vector<Contact> vec2 = rearrangeContacts(vec);
+		updateContacts();
 	}
 	catch(FileNotFound &F) {
 		createFile();
 	}
-
-	for (unsigned int i = 0; i < contacts.size(); i++) {
-		cout << contacts[i];
-	}
 }
 
-vector<vector<string> > ContactsManager::readContacts() {
+ContactsManager::~ContactsManager() {
+
+	for (unsigned int i = 0; i < contacts.size(); i++) delete contacts[i];
+}
+
+vector<vector<string> > ContactsManager::readContacts() const{
 
 	vector<vector<string> > vec;
 	vector <string> subVec;
 	ifstream file("Contacts.csv");
 	string line;
 
-	//The first line has the parameters
+	//The first line contains the parameters
 	getline(file, line);
 
 	while (!file.eof())
@@ -62,9 +62,9 @@ vector<vector<string> > ContactsManager::readContacts() {
 	return vec;
 }
 
-vector<Contact> ContactsManager::rearrangeContacts(vector<vector<string> > contacts_) {
+vector<Contact*> ContactsManager::rearrangeContacts(vector<vector<string> > contacts_) {
 
-	vector<Contact> vec;
+	vector<Contact*> vec;
 
 	for (unsigned int i = 0; i < contacts_.size(); i++) {
 
@@ -74,8 +74,7 @@ vector<Contact> ContactsManager::rearrangeContacts(vector<vector<string> > conta
 		string str_number = contacts_[i][3];
 		int number = stringToInt(str_number);
 
-		Contact C(name, address, email, number);
-
+		Contact* C = new Contact(name, address, email, number);
 		vec.push_back(C);
 	}
 
@@ -84,19 +83,90 @@ vector<Contact> ContactsManager::rearrangeContacts(vector<vector<string> > conta
 	return vec;
 }
 
-void ContactsManager::createFile() {
+void ContactsManager::addContact(Contact* C) {
+
+	contacts.push_back(C);
+
+	updateFile();
+}
+
+void ContactsManager::removeContact(int pos) {
+
+	delete contacts[pos];
+	contacts.erase(contacts.begin() + pos);
+
+	updateFile();
+}
+
+void ContactsManager::removeContactInterf() {
+
+	string name;
+	cout << "Insert the name: ";
+	cin.ignore();
+	getline(cin, name);
+
+	for (unsigned int i = 0; i < contacts.size(); i++) {
+		if (contacts[i]->getName() == name) {
+			removeContact(i);
+			return;
+		}
+	}
+
+	cout << "Name not found." << endl;
+}
+
+void ContactsManager::createContact() {
+
+	//Adicionar uma verificacao para nome/numero/email ja existente
+
+	string name;
+	cout << "Insert a name: ";
+	cin.ignore();
+	getline(cin, name);
+
+	string address;
+	cout << "Insert an address: ";
+	getline(cin, address);
+
+	string email;
+	cout << "Insert an email: ";
+	getline(cin, email);
+
+	int number;
+	cout << "Insert a phone number: ";
+	cin >> number;
+
+	Contact* temp = new Contact(name, address, email, number);
+	addContact(temp);
+
+	cout << "Contact created sucessfully." << endl;
+}
+
+void ContactsManager::createFile() const {
 
 	ofstream file("Contacts.csv");
-	file << "nome, morada, email, telefone";
-
+	file << "nome,morada,email,telefone";
 }
 
 void ContactsManager::updateFile() {
 
 	ofstream file("Contacts.csv");
-	file.open("Contactos.csv", ios_base::app);
 
-	for (unsigned int i = 0; i < contacts.size(); i++) {
-		file << contacts[i];
+	if (file) {
+
+		file << "nome,morada,email,telefone" << endl;
+
+		for (unsigned int i = 0; i < contacts.size(); i++) {
+			file << *contacts[i];
+		}
 	}
+	else throw FileNotFound();
+}
+
+void ContactsManager::updateContacts() {
+
+	vector<vector<string> > vec = readContacts();
+	vector<Contact*> vec2 = rearrangeContacts(vec);
+
+	contacts = vec2;
 }
