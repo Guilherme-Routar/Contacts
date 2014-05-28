@@ -14,7 +14,7 @@ private:
 public:
 	Contact(string name, string address, string email, int number);
 
-	//Metodos get e set
+	//Get and set methods
 	string getName() {return name;}
 	string getAddress() {return address;}
 	string getEmail() {return email;}
@@ -28,6 +28,8 @@ public:
 	friend ostream & operator<<(ostream &os, Contact C);
 
 };
+
+
 
 
 #endif /* CONTACT_H_ */
