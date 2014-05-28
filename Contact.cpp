@@ -13,6 +13,6 @@ Contact::Contact(string name, string address, string email, int number)
 
 ostream & operator<<(ostream &os, Contact C) {
 
-	os << C.getName() << ", " << C.getAddress() << ", " << C.getEmail() << ", " << C.getNumber() << endl;
+	os << C.getName() << "," << C.getAddress() << "," << C.getEmail() << "," << C.getNumber() << endl;
 	return os;
 }
