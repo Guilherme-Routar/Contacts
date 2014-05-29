@@ -14,7 +14,10 @@ ContactsManager::ContactsManager() {
 
 ContactsManager::~ContactsManager() {
     
-    for (unsigned int i = 0; i < contacts.size(); i++) delete contacts[i];
+    saveContacts();
+    
+    for (unsigned int i = 0; i < getContacts().size(); i++)
+        delete getContacts()[i];
 }
 
 //============================================================================
@@ -30,7 +33,6 @@ void ContactsManager::addContact(Contact* C) {
 
 	contacts.push_back(C);
     
-    updateFile();
 }
 
 //============================================================================
@@ -40,7 +42,6 @@ void ContactsManager::removeContact(int pos) {
 	delete contacts[pos];
 	contacts.erase(contacts.begin() + pos);
 
-	updateFile();
 }
 
 //============================================================================
@@ -88,7 +89,7 @@ void ContactsManager::createContact() {
 	Contact* temp = new Contact(name, address, email, number);
 	addContact(temp);
 
-	cout << "Contact created sucessfully." << endl;
+	cout << endl << "Contact created sucessfully." << endl;
 }
 
 //============================================================================
@@ -101,19 +102,39 @@ void ContactsManager::createFile() const {
 
 //============================================================================
 
-void ContactsManager::updateFile() {
-
-	ofstream file("Contacts.csv");
-
-	if (file) {
-
-		file << "nome,morada,email,telefone" << endl;
-
-		for (unsigned int i = 0; i < contacts.size(); i++) {
-			file << *contacts[i];
-		}
-	}
-	else throw FileNotFound();
+void ContactsManager::saveContacts() {
+    
+    ofstream file_out;
+    
+    if(getContacts().size() != 0)
+    {
+        file_out.open("Contacts.csv");
+        
+        if(file_out.fail())
+        {
+            throw FileNotFound();
+        }
+        
+        file_out << "nome,morada,email,telefone" << endl;
+        
+        for(int i=0; i<getContacts().size(); i++)
+        {
+            file_out << *getContacts()[i];
+            
+            if(i != (getContacts().size()-1))
+            {
+                file_out << endl;
+            }
+        }
+        
+        file_out.close();
+        
+    }
+    else
+    {
+        remove("Contacts.csv");
+    }
+    
 }
 
 //============================================================================
@@ -167,7 +188,7 @@ void ContactsManager::loadContacts() {
 void ContactsManager::printContacts() const
 {
     for (unsigned int i = 0; i < getContacts().size(); i++) {
-		cout << *getContacts()[i];
+		cout << *getContacts()[i] << endl;
 	}
     
     cout << endl << "Num contactos: " << getContacts().size() << endl << endl;

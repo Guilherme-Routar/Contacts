@@ -61,9 +61,9 @@ public:
 	void createFile() const;
     
 	/**
-	 * Updates the csv file with the current contacts
+	 * Save to an csv file the current contacts in ContactManager
 	 */
-	void updateFile();
+	void saveContacts();
     
 	/**
 	 * Loads the contacts from a csv file to the ContactManager
