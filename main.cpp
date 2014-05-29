@@ -7,7 +7,7 @@
 
 using namespace std;
 
-void mainMenu(ContactsManager A) {
+void mainMenu(ContactsManager contManag) {
     
 	char option;
     
@@ -28,10 +28,10 @@ void mainMenu(ContactsManager A) {
             case '1': //Search contact
                 break;
             case '2': //Add contact
-                A.createContact();
+                contManag.createContact();
                 break;
             case '3': //Remove contact
-                A.removeContactInterf();
+                contManag.removeContactInterf();
                 break;
             case '4': //Exit
                 exit(0);
@@ -48,13 +48,8 @@ void mainMenu(ContactsManager A) {
 int main() {
 
 	ContactsManager contManag;
-	vector<Contact*> vec = contManag.getContacts();
 
-    cout <<"Num contactos: " << vec.size() << endl;
-	for (unsigned int i = 0; i < vec.size(); i++) {
-		cout << *vec[i];
-	}
-	cout << endl << endl;
+    cout <<"Num contactos: " << contManag.getContacts().size() << endl;
 
 	mainMenu(contManag);
     

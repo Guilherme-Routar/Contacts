@@ -188,3 +188,16 @@ void ContactsManager::updateContacts() {
 
 	contacts = vec2;
 }
+
+//============================================================================
+
+void ContactsManager::printContacts() const
+{
+    for (unsigned int i = 0; i < getContacts().size(); i++) {
+		cout << *getContacts()[i];
+	}
+    
+	cout << endl << endl;
+}
+
+

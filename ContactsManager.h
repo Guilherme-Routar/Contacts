@@ -79,6 +79,11 @@ public:
 	 * Updates the contacts
 	 */
 	void updateContacts();
+    
+    /**
+     * Prints all contacts
+     */
+    void printContacts() const;
 
 };
 
