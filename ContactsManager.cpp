@@ -19,15 +19,21 @@ ContactsManager::ContactsManager() {
 	}
 }
 
+//============================================================================
+
 ContactsManager::~ContactsManager() {
 
 	for (unsigned int i = 0; i < contacts.size(); i++) delete contacts[i];
 }
 
+//============================================================================
+
 vector<Contact*> ContactsManager::getContacts() const
 {
     return contacts;
 }
+
+//============================================================================
 
 vector<vector<string> > ContactsManager::readContacts() const{
 
@@ -67,6 +73,8 @@ vector<vector<string> > ContactsManager::readContacts() const{
 	return vec;
 }
 
+//============================================================================
+
 vector<Contact*> ContactsManager::rearrangeContacts(vector<vector<string> > contacts_) {
 
 	vector<Contact*> vec;
@@ -88,12 +96,16 @@ vector<Contact*> ContactsManager::rearrangeContacts(vector<vector<string> > cont
 	return vec;
 }
 
+//============================================================================
+
 void ContactsManager::addContact(Contact* C) {
 
 	contacts.push_back(C);
 
 	updateFile();
 }
+
+//============================================================================
 
 void ContactsManager::removeContact(int pos) {
 
@@ -102,6 +114,8 @@ void ContactsManager::removeContact(int pos) {
 
 	updateFile();
 }
+
+//============================================================================
 
 void ContactsManager::removeContactInterf() {
 
@@ -119,6 +133,8 @@ void ContactsManager::removeContactInterf() {
 
 	cout << "Name not found." << endl;
 }
+
+//============================================================================
 
 void ContactsManager::createContact() {
 
@@ -147,11 +163,15 @@ void ContactsManager::createContact() {
 	cout << "Contact created sucessfully." << endl;
 }
 
+//============================================================================
+
 void ContactsManager::createFile() const {
 
 	ofstream file("Contacts.csv");
 	file << "nome,morada,email,telefone";
 }
+
+//============================================================================
 
 void ContactsManager::updateFile() {
 
@@ -167,6 +187,8 @@ void ContactsManager::updateFile() {
 	}
 	else throw FileNotFound();
 }
+
+//============================================================================
 
 void ContactsManager::updateContacts() {
 
