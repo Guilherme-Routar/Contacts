@@ -12,7 +12,7 @@ Contact::Contact(string name, string address, string email, int number)
 
 ostream & operator<<(ostream &os, Contact out_cont) {
 
-	os << out_cont.getName() << "," << out_cont.getAddress() << "," << out_cont.getEmail() << "," << out_cont.getNumber() << endl;
+	os << out_cont.getName() << "," << out_cont.getAddress() << "," << out_cont.getEmail() << "," << out_cont.getNumber();
     
 	return os;
 }
