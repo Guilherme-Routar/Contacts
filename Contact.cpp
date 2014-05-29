@@ -11,8 +11,9 @@ Contact::Contact(string name, string address, string email, int number)
 	this->number = number;
 }
 
-ostream & operator<<(ostream &os, Contact C) {
+ostream & operator<<(ostream &os, Contact out_cont) {
 
-	os << C.getName() << "," << C.getAddress() << "," << C.getEmail() << "," << C.getNumber() << endl;
+	os << out_cont.getName() << "," << out_cont.getAddress() << "," << out_cont.getEmail() << "," << out_cont.getNumber() << endl;
+    
 	return os;
 }

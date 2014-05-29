@@ -25,7 +25,7 @@ public:
 	void setEmail(string e) {email = e;}
 	void setNumber(int u) {number = u;}
 
-	friend ostream & operator<<(ostream &os, Contact C);
+	friend ostream & operator<<(ostream &os, Contact out_cont);
 
 };
 
