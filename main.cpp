@@ -52,9 +52,11 @@ void mainMenu(ContactsManager &contManag) {
 
 int main() {
 
-	ContactsManager contManag;
+	ContactsManager* contManag = new ContactsManager();
 
-	mainMenu(contManag);
+	mainMenu(*contManag);
+    
+    delete contManag;
     
     return 0;
     
