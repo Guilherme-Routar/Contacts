@@ -14,7 +14,7 @@ void mainMenu(ContactsManager* contManag) {
     
 	while (!quit_menu) {
         
-		cout << "########################" << endl
+		cout << endl << "########################" << endl
         << "#   CONTACTS MANAGER   #" << endl
         << "########################" << endl << endl;
         
