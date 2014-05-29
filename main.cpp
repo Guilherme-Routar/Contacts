@@ -7,18 +7,48 @@
 
 using namespace std;
 
-void mainMenu(ContactsManager A);
-
-int stringToInt(string str) {
-	int n;
-	istringstream(str) >> n;
-	return n;
+void mainMenu(ContactsManager A) {
+    
+	char option;
+    
+	while (true) {
+        
+		cout << "########################" << endl
+        << "#   CONTACTS MANAGER   #" << endl
+        << "########################" << endl << endl;
+        
+		cout << "[1] Search contact" << endl
+        << "[2] Add contact" << endl
+        << "[3] Remove contact" << endl
+        << "[4] Exit" << endl << endl;
+        
+		cin >> option;
+        
+		switch(option) {
+            case '1': //Search contact
+                break;
+            case '2': //Add contact
+                A.createContact();
+                break;
+            case '3': //Remove contact
+                A.removeContactInterf();
+                break;
+            case '4': //Exit
+                exit(0);
+                break;
+            default:
+                cout << "Invalid option." << endl;
+                break;
+		}
+	}
 }
+
+//============================================================================
 
 int main() {
 
-	ContactsManager A;
-	vector<Contact*> vec = A.getContacts();
+	ContactsManager contManag;
+	vector<Contact*> vec = contManag.getContacts();
 
     cout <<"Num contactos: " << vec.size() << endl;
 	for (unsigned int i = 0; i < vec.size(); i++) {
@@ -26,41 +56,8 @@ int main() {
 	}
 	cout << endl << endl;
 
-	mainMenu(A);
+	mainMenu(contManag);
+    
 }
 
-void mainMenu(ContactsManager A) {
 
-	char option;
-
-	while (true) {
-
-		cout << "########################" << endl
-		     << "#   CONTACTS MANAGER   #" << endl
-		     << "########################" << endl << endl;
-
-		cout << "[1] Search contact" << endl
-		     << "[2] Add contact" << endl
-		     << "[3] Remove contact" << endl
-		     << "[4] Exit" << endl << endl;
-
-		cin >> option;
-
-		switch(option) {
-		case '1': //Search contact
-			break;
-		case '2': //Add contact
-			A.createContact();
-			break;
-		case '3': //Remove contact
-			A.removeContactInterf();
-			break;
-		case '4': //Exit
-			exit(0);
-			break;
-		default:
-			cout << "Invalid option." << endl;
-			break;
-		}
-	}
-}
