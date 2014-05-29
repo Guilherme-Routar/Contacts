@@ -7,16 +7,56 @@
 #include <string>
 #include <sstream>
 #include <string>
+#include <unordered_set>
 
 #include "Contact.h"
 #include "FileNotFound.h"
 
 using namespace std;
 
+struct contactHash
+{
+    int operator() (const Contact &c1) const
+    {
+        int sum = 0;
+        
+        for(int i; i < c1.getName().length(); i++)
+        {
+            sum = sum + (int)c1.getName()[i];
+        }
+        
+        return sum;
+    }
+    
+    bool operator() (const Contact &c1, const Contact &c2) const
+    {
+        if(c1.getName().length() != c2.getName().length())
+        {
+            return false;
+        }
+        
+        for(int i=0; i < c1.getName().length(); i++)
+        {
+            if(c1.getName()[i] != c2.getName()[i])
+            {
+                return false;
+            }
+        }
+        
+        return true;
+    }
+    
+};
+
+typedef unordered_set<Contact, contactHash, contactHash> HashContact;
+
+//============================================================================
+
 class ContactsManager {
 
 private:
 	vector<Contact*> contacts;
+    HashContact contactList;
 
 public:
     
