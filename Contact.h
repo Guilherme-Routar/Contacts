@@ -14,12 +14,13 @@ private:
 public:
 	Contact(string name, string address, string email, int number);
 
-	//Get and set methods
+	//Get Methods
 	string getName() {return name;}
 	string getAddress() {return address;}
 	string getEmail() {return email;}
 	int getNumber() {return number;}
 
+    //Set Methods
 	void setName(string n) {name = n;}
 	void setAddress(string m) {address = m;}
 	void setEmail(string e) {email = e;}
