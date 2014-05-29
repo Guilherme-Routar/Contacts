@@ -21,7 +21,8 @@ void mainMenu(ContactsManager &contManag) {
 		cout << "[1] Search contact" << endl
         << "[2] Add contact" << endl
         << "[3] Remove contact" << endl
-        << "[4] Exit" << endl << endl;
+        << "[4] Print Contact List" << endl
+        << "[5] Exit" << endl << endl;
         
 		cin >> option;
         
@@ -32,9 +33,12 @@ void mainMenu(ContactsManager &contManag) {
                 contManag.createContact();
                 break;
             case '3': //Remove contact
-                contManag.removeContactInterf();
+                contManag.removeContact();
                 break;
-            case '4': //Exit
+            case '4':
+                contManag.printContacts();
+                break;
+            case '5': //Exit
                 quit_menu = true;
                 break;
             default:
@@ -49,8 +53,6 @@ void mainMenu(ContactsManager &contManag) {
 int main() {
 
 	ContactsManager contManag;
-
-    contManag.printContacts();
 
 	mainMenu(contManag);
     
