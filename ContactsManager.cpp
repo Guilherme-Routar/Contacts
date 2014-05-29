@@ -3,7 +3,7 @@
 ContactsManager::ContactsManager() {
 
 	try {
-		updateContacts();
+		loadContacts();
 	}
 	catch(FileNotFound &F) {
 		createFile();
@@ -13,8 +13,8 @@ ContactsManager::ContactsManager() {
 //============================================================================
 
 ContactsManager::~ContactsManager() {
-
-	for (unsigned int i = 0; i < contacts.size(); i++) delete contacts[i];
+    
+    for (unsigned int i = 0; i < contacts.size(); i++) delete contacts[i];
 }
 
 //============================================================================
@@ -23,77 +23,14 @@ vector<Contact*> ContactsManager::getContacts() const
 {
     return contacts;
 }
-
-//============================================================================
-
-vector<vector<string> > ContactsManager::readContacts() const{
-
-	vector<vector<string> > vec;
-	vector <string> subVec;
-	ifstream file("Contacts.csv");
-	string line;
-
-	//The first line contains the parameters
-	getline(file, line);
-
-	while (!file.eof())
-	{
-		if (file)
-		{
-			if (!getline(file, line)) break;
-
-			istringstream content(line);
-			subVec.clear();
-
-			while (content)
-			{
-				string subContent;
-				if (!getline(content, subContent, ',')) break;
-				subVec.push_back(subContent);
-			}
-
-			vec.push_back(subVec);
-		}
-		else {
-			vec.clear();
-			throw FileNotFound();
-			break;
-		}
-	}
-
-	return vec;
-}
-
-//============================================================================
-
-vector<Contact*> ContactsManager::rearrangeContacts(vector<vector<string> > contacts_) {
-
-	vector<Contact*> vec;
-
-	for (unsigned int i = 0; i < contacts_.size(); i++) {
-
-		string name = contacts_[i][0];
-		string address = contacts_[i][1];
-		string email = contacts_[i][2];
-		string str_number = contacts_[i][3];
-		int number = atoi(str_number.c_str());
-
-		Contact* C = new Contact(name, address, email, number);
-		vec.push_back(C);
-	}
-
-	contacts = vec;
-
-	return vec;
-}
-
+ 
 //============================================================================
 
 void ContactsManager::addContact(Contact* C) {
 
 	contacts.push_back(C);
-
-	updateFile();
+    
+    updateFile();
 }
 
 //============================================================================
@@ -181,12 +118,48 @@ void ContactsManager::updateFile() {
 
 //============================================================================
 
-void ContactsManager::updateContacts() {
-
-	vector<vector<string> > vec = readContacts();
-	vector<Contact*> vec2 = rearrangeContacts(vec);
-
-	contacts = vec2;
+void ContactsManager::loadContacts() {
+    
+    ifstream file_in;
+    
+    file_in.open("Contacts.csv");
+    
+    if(!file_in.fail())
+    {
+        string line;
+        
+        //The first line contains the parameters
+        getline(file_in, line);
+        
+        while(file_in.good())
+        {
+            string name;
+            string address;
+            string email;
+            string number_str;
+            
+            getline(file_in, line);
+            stringstream line_ss(line);
+            
+            getline(line_ss, name, ',');
+            getline(line_ss, address, ',');
+            getline(line_ss, email, ',');
+            getline(line_ss, number_str, ',');
+            
+            int number = atoi(number_str.c_str());
+            
+            Contact* c1 = new Contact(name, address, email, number);
+            
+            addContact(c1);
+        }
+        
+        file_in.close();
+    }
+    else
+    {
+        throw FileNotFound();
+    }
+    
 }
 
 //============================================================================
