@@ -6,8 +6,10 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+#include <string>
 
 #include "Contact.h"
+#include "FileNotFound.h"
 
 using namespace std;
 

@@ -1,9 +1,4 @@
 #include "ContactsManager.h"
-#include <iostream>
-#include <string>
-#include "Contact.h"
-#include <vector>
-#include "FileNotFound.h"
 
 using namespace std;
 
