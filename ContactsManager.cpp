@@ -24,6 +24,11 @@ ContactsManager::~ContactsManager() {
 	for (unsigned int i = 0; i < contacts.size(); i++) delete contacts[i];
 }
 
+vector<Contact*> ContactsManager::getContacts() const
+{
+    return contacts;
+}
+
 vector<vector<string> > ContactsManager::readContacts() const{
 
 	vector<vector<string> > vec;
