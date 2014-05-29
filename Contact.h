@@ -35,6 +35,4 @@ public:
 };
 
 
-
-
 #endif /* CONTACT_H_ */
