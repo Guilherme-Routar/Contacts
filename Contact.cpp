@@ -1,7 +1,5 @@
 #include "Contact.h"
 
-using namespace std;
-
 Contact::Contact(string name, string address, string email, int number)
 {
 	this->name = name;

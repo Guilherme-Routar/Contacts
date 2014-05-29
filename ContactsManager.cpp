@@ -1,9 +1,5 @@
 #include "ContactsManager.h"
 
-using namespace std;
-
-int stringToInt(string str);
-
 ContactsManager::ContactsManager() {
 
 	try {
@@ -80,7 +76,7 @@ vector<Contact*> ContactsManager::rearrangeContacts(vector<vector<string> > cont
 		string address = contacts_[i][1];
 		string email = contacts_[i][2];
 		string str_number = contacts_[i][3];
-		int number = stringToInt(str_number);
+		int number = atoi(str_number.c_str());
 
 		Contact* C = new Contact(name, address, email, number);
 		vec.push_back(C);
