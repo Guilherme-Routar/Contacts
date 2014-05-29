@@ -55,7 +55,6 @@ typedef unordered_set<Contact, contactHash, contactHash> HashContact;
 class ContactsManager {
 
 private:
-	vector<Contact*> contacts;
     HashContact contactList;
 
 public:
@@ -73,27 +72,17 @@ public:
 	/**
 	 * Returns the contacts
 	 */
-	vector<Contact*> getContacts() const;
+	HashContact getContacts() const;
     
-	/**
-	 * Adds contact C to the contacts
-	 */
-	void addContact(Contact* C);
-    
-	/**
-	 * Removes contact C from the contacts
-	 */
-	void removeContact(int pos);
-    
-	/**
-	 * Removes a contact
-	 */
-	void removeContactInterf();
-    
-	/**
+    /**
 	 * * Creates a contact
 	 */
 	void createContact();
+    
+	/**
+	 * Removes contact from the contacts
+	 */
+	void removeContact();
 
 	/**
 	 * Creates the csv file

@@ -16,58 +16,41 @@ ContactsManager::~ContactsManager() {
     
     saveContacts();
     
-    for (unsigned int i = 0; i < getContacts().size(); i++)
-        delete getContacts()[i];
 }
 
 //============================================================================
 
-vector<Contact*> ContactsManager::getContacts() const
+HashContact ContactsManager::getContacts() const
 {
-    return contacts;
+    return contactList;
 }
- 
+
 //============================================================================
 
-void ContactsManager::addContact(Contact* C) {
+void ContactsManager::removeContact() {
 
-	contacts.push_back(C);
+	string name;
+	cout << endl << "Insert the name: ";
+	getline(cin, name);
+    
+    Contact c1(name,"","",0);
+    HashContact::const_iterator itf = contactList.find(c1);
+    
+    if(itf != contactList.end())
+    {
+        contactList.erase(itf);
+        cout << endl<< "Contact found and deleted." << endl;
+    }
+    else
+    {
+        cout << "Contact not found." << endl;
+    }
     
 }
 
 //============================================================================
 
-void ContactsManager::removeContact(int pos) {
-
-	delete contacts[pos];
-	contacts.erase(contacts.begin() + pos);
-
-}
-
-//============================================================================
-
-void ContactsManager::removeContactInterf() {
-
-	string name;
-	cout << "Insert the name: ";
-	cin.ignore();
-	getline(cin, name);
-
-	for (unsigned int i = 0; i < contacts.size(); i++) {
-		if (contacts[i]->getName() == name) {
-			removeContact(i);
-			return;
-		}
-	}
-
-	cout << "Name not found." << endl;
-}
-
-//============================================================================
-
 void ContactsManager::createContact() {
-
-	//Adicionar uma verificacao para nome/numero/email ja existente
 
 	string name;
 	cout << "Insert a name: ";
@@ -85,11 +68,22 @@ void ContactsManager::createContact() {
 	int number;
 	cout << "Insert a phone number: ";
 	cin >> number;
-
-	Contact* temp = new Contact(name, address, email, number);
-	addContact(temp);
-
-	cout << endl << "Contact created sucessfully." << endl;
+    
+    //Adicionar uma verificacao para nome/numero/email ja existente
+    Contact c1(name,"","",0);
+    HashContact::const_iterator itf = contactList.find(c1);
+    
+    if(itf == contactList.end())
+    {
+        Contact temp(name, address, email, number);
+        contactList.insert(temp);
+        cout << endl << "Contact created sucessfully." << endl;
+    }
+    else
+    {
+        cout << endl << "Contact already exists." << endl;
+    }
+	
 }
 
 //============================================================================
@@ -117,14 +111,18 @@ void ContactsManager::saveContacts() {
         
         file_out << "nome,morada,email,telefone" << endl;
         
-        for(int i=0; i<getContacts().size(); i++)
+        HashContact::const_iterator it = contactList.begin();
+        
+        while(it != contactList.end())
         {
-            file_out << *getContacts()[i];
+            file_out << *it;
+            it++;
             
-            if(i != (getContacts().size()-1))
+            if(it != contactList.end())
             {
                 file_out << endl;
             }
+            
         }
         
         file_out.close();
@@ -169,9 +167,9 @@ void ContactsManager::loadContacts() {
             
             int number = atoi(number_str.c_str());
             
-            Contact* c1 = new Contact(name, address, email, number);
+            Contact c1(name, address, email, number);
             
-            addContact(c1);
+            contactList.insert(c1);
         }
         
         file_in.close();
@@ -187,9 +185,13 @@ void ContactsManager::loadContacts() {
 
 void ContactsManager::printContacts() const
 {
-    for (unsigned int i = 0; i < getContacts().size(); i++) {
-		cout << *getContacts()[i] << endl;
-	}
+    HashContact::const_iterator it = contactList.begin();
+    
+    while(it != contactList.end())
+    {
+        cout << *it << endl;
+        it++;
+    }
     
     cout << endl << "Num contactos: " << getContacts().size() << endl << endl;
 	
