@@ -49,7 +49,7 @@ int main() {
 
 	ContactsManager contManag;
 
-    cout <<"Num contactos: " << contManag.getContacts().size() << endl;
+    contManag.printContacts();
 
 	mainMenu(contManag);
     

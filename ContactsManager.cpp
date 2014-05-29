@@ -197,7 +197,8 @@ void ContactsManager::printContacts() const
 		cout << *getContacts()[i];
 	}
     
-	cout << endl << endl;
+    cout << endl << "Num contactos: " << getContacts().size() << endl << endl;
+	
 }
 
 
