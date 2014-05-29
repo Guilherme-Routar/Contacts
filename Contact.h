@@ -17,10 +17,10 @@ public:
 	/**
      * Get Methods
      */
-	string getName() {return name;}
-	string getAddress() {return address;}
-	string getEmail() {return email;}
-	int getNumber() {return number;}
+	string getName() const {return name;}
+	string getAddress() const {return address;}
+	string getEmail() const {return email;}
+	int getNumber() const {return number;}
 
     /**
      * Set Methods
