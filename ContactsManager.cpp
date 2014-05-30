@@ -226,5 +226,3 @@ void ContactsManager::printContacts() const
     cout << endl << "Num contactos: " << getContacts().size() << endl << endl;
 	
 }
-
-

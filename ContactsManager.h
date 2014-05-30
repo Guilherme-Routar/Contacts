@@ -6,6 +6,7 @@
 #include <string>
 #include <sstream>
 #include <unordered_set>
+#include <vector>
 
 #include "Contact.h"
 #include "FileNotFound.h"
