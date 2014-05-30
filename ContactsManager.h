@@ -14,6 +14,20 @@
 
 using namespace std;
 
+struct contactSearch
+{
+    Contact* contact_p;
+    int editDist_name;
+    int editDist_address;
+    int editDist_mail;
+    
+    bool operator<(const contactSearch &s1) const
+    {
+        return editDist_name < s1.editDist_name;
+    }
+    
+};
+
 struct contactHash
 {
     int operator() (const Contact &c1) const
