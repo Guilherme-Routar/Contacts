@@ -2,11 +2,9 @@
 #define CONTACTSMANAGER_H_
 
 #include <iostream>
-#include <vector>
 #include <fstream>
 #include <string>
 #include <sstream>
-#include <string>
 #include <unordered_set>
 
 #include "Contact.h"

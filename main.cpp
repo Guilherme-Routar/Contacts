@@ -1,6 +1,4 @@
 #include <iostream>
-#include <sstream>
-#include <stdlib.h>
 
 #include "Contact.h"
 #include "ContactsManager.h"
