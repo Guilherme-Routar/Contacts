@@ -12,6 +12,11 @@ namespace util
      * Calculates edit distance between two strings
      */
     int editDistance(string pattern, string text);
+    
+    /**
+     * String to lower case
+     */
+    string strToLower(string &transStr);
 }
 
 #endif /* defined(__Contact_Manager__Util__) */

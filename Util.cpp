@@ -3,10 +3,6 @@
 
 namespace util
 {
-    /**
-     * Calculates edit distance between two strings
-     */
-    
     int editDistance(string pattern, string text)
     {
         int n = (int)text.length();
@@ -48,5 +44,17 @@ namespace util
     }
     
     //============================================================================
+    
+    string strToLower(string &transStr)
+    {
+        string strOut = transStr;
+        
+        for(int i=0; i<strOut.length();i++)
+        {
+            strOut[i] = tolower(strOut[i]);
+        }
+        
+        return strOut;
+    }
     
 }
