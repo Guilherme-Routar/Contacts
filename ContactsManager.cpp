@@ -85,17 +85,39 @@ void ContactsManager::searchContact() {
 
 void ContactsManager::searchHelper(string &search_input)
 {
+    priority_queue<contactSearch> search_queue;
+    
     HashContact::const_iterator it = contactList.begin();
+    
+    string pattern = util::strToLower(search_input);
     
     while(it != contactList.end())
     {
         string text = (*it).getName();
         text = util::strToLower(text);
-        string pattern = util::strToLower(search_input);
         
-        cout << endl << "Name: " << (*it).getName() << " - EditDist = " << util::editDistance(pattern, text);
+        contactSearch search_cand;
+        search_cand.contact_name = (*it).getName();
+        search_cand.editDist_name = util::editDistance(pattern, text);
+        
+        search_queue.push(search_cand);
+        
         it++;
     }
+    
+    int i = 0;
+    
+    while(!search_queue.empty() && (i < N_SEARCH_RESULTS))
+    {
+        contactSearch temp;
+        temp = search_queue.top();
+        search_queue.pop();
+        
+        cout << endl << temp.contact_name << " - " << temp.editDist_name;
+        
+        i++;
+    }
+    
 }
 
 //============================================================================

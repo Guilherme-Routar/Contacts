@@ -5,25 +5,28 @@
 #include <fstream>
 #include <string>
 #include <sstream>
-#include <unordered_set>
 #include <vector>
+#include <unordered_set>
+#include <queue>
 
 #include "Contact.h"
 #include "Util.h"
 #include "FileNotFound.h"
 
+#define N_SEARCH_RESULTS 5
+
 using namespace std;
 
 struct contactSearch
 {
-    Contact* contact_p;
+    string contact_name;
     int editDist_name;
     int editDist_address;
     int editDist_mail;
     
     bool operator<(const contactSearch &s1) const
     {
-        return editDist_name < s1.editDist_name;
+        return editDist_name > s1.editDist_name;
     }
     
 };
