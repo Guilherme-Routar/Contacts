@@ -9,6 +9,7 @@
 #include <vector>
 
 #include "Contact.h"
+#include "Util.h"
 #include "FileNotFound.h"
 
 using namespace std;
@@ -20,12 +21,7 @@ struct contactHash
         int i = 0;
         int sum = 0;
         string name_key = c1.getName();
-        
-        while(name_key[i])
-        {
-            name_key[i] = tolower(name_key[i]);
-            i++;
-        }
+        name_key = util::strToLower(name_key);
         
         for(i = 0; i < name_key.length(); i++)
         {
@@ -95,6 +91,11 @@ public:
      * Search contact on the contact list
      */
     void searchContact();
+    
+    /**
+     * Generates search suggestions
+     */
+    void searchHelper(string &search_input);
 
 	/**
 	 * Creates the csv file

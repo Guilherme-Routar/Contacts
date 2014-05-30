@@ -53,21 +53,49 @@ void ContactsManager::removeContact() {
 void ContactsManager::searchContact() {
     
 	string name;
-	cout << endl << "Search: ";
-	getline(cin, name);
+    bool quit_search = false;
     
-    Contact c1(name,"","",0);
-    HashContact::const_iterator itf = contactList.find(c1);
-    
-    if(itf != contactList.end())
+    while(!quit_search)
     {
-        cout << endl<< "Contact found: " << *itf << endl;
-    }
-    else
-    {
-        cout << "Contact not found." << endl;
+        cout << endl << endl << "Search: ";
+        getline(cin, name);
+        
+        Contact c1(name,"","",0);
+        HashContact::const_iterator itf = contactList.find(c1);
+        
+        if(itf != contactList.end())
+        {
+            cout << endl << "Contact found: " << *itf << endl;
+            quit_search = true;
+        }
+        else if(name == "")
+        {
+            quit_search = true;
+        }
+        else
+        {
+            cout << endl << "Did you mean: " << endl;
+            searchHelper(name);
+        }
     }
     
+}
+
+//============================================================================
+
+void ContactsManager::searchHelper(string &search_input)
+{
+    HashContact::const_iterator it = contactList.begin();
+    
+    while(it != contactList.end())
+    {
+        string text = (*it).getName();
+        text = util::strToLower(text);
+        string pattern = util::strToLower(search_input);
+        
+        cout << endl << "Name: " << (*it).getName() << " - EditDist = " << util::editDistance(pattern, text);
+        it++;
+    }
 }
 
 //============================================================================
