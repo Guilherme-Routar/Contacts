@@ -53,8 +53,22 @@ void ContactsManager::removeContact() {
 void ContactsManager::createContact() {
 
 	string name;
-	cout << "Insert a name: ";
-	getline(cin, name);
+    bool input_check = false;
+
+    while(!input_check)
+    {
+        cout << "Insert a name: ";
+        getline(cin, name);
+        
+        if(name == "")
+        {
+            cout << endl << "Invalid Contact Name." << endl;
+        }
+        else
+        {
+            input_check = true;
+        }
+    }
 
 	string address;
 	cout << "Insert an address: ";
@@ -65,7 +79,7 @@ void ContactsManager::createContact() {
 	getline(cin, email);
 
     int number = 0;
-	bool input_check = false;
+	input_check = false;
     
     while(!input_check)
     {
@@ -80,7 +94,7 @@ void ContactsManager::createContact() {
         {
             cin.clear();
             cin.ignore(1000,'\n');
-            cout << endl << "Phone number invalid." << endl;
+            cout << endl << "Invalid Phone Number." << endl;
         }
         
     }
