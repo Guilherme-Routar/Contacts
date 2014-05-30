@@ -9,7 +9,8 @@ using namespace std;
 
 void mainMenu(ContactsManager &contManag) {
     
-	char option;
+	int option;
+    string option_str;
     bool quit_menu = false;
     
 	while (!quit_menu) {
@@ -24,21 +25,22 @@ void mainMenu(ContactsManager &contManag) {
         << "[4] Print Contact List" << endl
         << "[5] Exit" << endl << endl;
         
-		cin >> option;
+		getline(cin, option_str);
+        option = atoi(option_str.c_str());
         
 		switch(option) {
-            case '1': //Search contact
+            case 1: //Search contact
                 break;
-            case '2': //Add contact
+            case 2: //Add contact
                 contManag.createContact();
                 break;
-            case '3': //Remove contact
+            case 3: //Remove contact
                 contManag.removeContact();
                 break;
-            case '4':
+            case 4:
                 contManag.printContacts();
                 break;
-            case '5': //Exit
+            case 5: //Exit
                 quit_menu = true;
                 break;
             default:
