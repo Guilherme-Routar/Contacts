@@ -17,11 +17,19 @@ struct contactHash
 {
     int operator() (const Contact &c1) const
     {
+        int i = 0;
         int sum = 0;
+        string name_key = c1.getName();
         
-        for(int i; i < c1.getName().length(); i++)
+        while(name_key[i])
         {
-            sum = sum + (int)c1.getName()[i];
+            name_key[i] = tolower(name_key[i]);
+            i++;
+        }
+        
+        for(i = 0; i < name_key.length(); i++)
+        {
+            sum = sum + (int)name_key[i];
         }
         
         return sum;
@@ -36,7 +44,7 @@ struct contactHash
         
         for(int i=0; i < c1.getName().length(); i++)
         {
-            if(c1.getName()[i] != c2.getName()[i])
+            if(tolower(c1.getName()[i]) != tolower(c2.getName()[i]))
             {
                 return false;
             }
