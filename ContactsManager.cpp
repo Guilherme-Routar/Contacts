@@ -50,6 +50,28 @@ void ContactsManager::removeContact() {
 
 //============================================================================
 
+void ContactsManager::searchContact() {
+    
+	string name;
+	cout << endl << "Search: ";
+	getline(cin, name);
+    
+    Contact c1(name,"","",0);
+    HashContact::const_iterator itf = contactList.find(c1);
+    
+    if(itf != contactList.end())
+    {
+        cout << endl<< "Contact found: " << *itf << endl;
+    }
+    else
+    {
+        cout << "Contact not found." << endl;
+    }
+    
+}
+
+//============================================================================
+
 void ContactsManager::createContact() {
 
 	string name;

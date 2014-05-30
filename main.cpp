@@ -28,6 +28,7 @@ void mainMenu(ContactsManager &contManag) {
         
 		switch(option) {
             case 1: //Search contact
+                contManag.searchContact();
                 break;
             case 2: //Add contact
                 contManag.createContact();

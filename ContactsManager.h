@@ -79,9 +79,14 @@ public:
 	void createContact();
     
 	/**
-	 * Removes contact from the contacts
+	 * Removes contact from the contact list
 	 */
 	void removeContact();
+    
+    /**
+     * Search contact on the contact list
+     */
+    void searchContact();
 
 	/**
 	 * Creates the csv file
