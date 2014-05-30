@@ -98,7 +98,7 @@ void ContactsManager::searchHelper(string &search_input)
         
         contactSearch search_cand;
         search_cand.contact_name = (*it).getName();
-        search_cand.editDist_name = util::editDistance(pattern, text);
+        search_cand.editDist_name = util::minEditDistance(pattern, text, CHAR_ERROR_TOLERANCE);
         
         search_queue.push(search_cand);
         

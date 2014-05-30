@@ -45,6 +45,26 @@ namespace util
     
     //============================================================================
     
+    int minEditDistance(string pattern, string text, double charErrorTol)
+    {
+        int minEditDistance = editDistance(pattern, text);
+        
+        
+        double errorText = (double) minEditDistance / text.length();
+        
+        if(errorText < charErrorTol)
+        {
+            return 0;
+        }
+        else
+        {
+            return minEditDistance;
+        }
+        
+    }
+    
+    //============================================================================
+    
     string strToLower(string &transStr)
     {
         string strOut = transStr;

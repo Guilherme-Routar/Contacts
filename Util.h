@@ -14,6 +14,11 @@ namespace util
     int editDistance(string pattern, string text);
     
     /**
+     * Calculates the minimum edit distance between two string with character error tolerance
+     */
+    int minEditDistance(string pattern, string text, double charErrorTol);
+    
+    /**
      * String to lower case
      */
     string strToLower(string &transStr);
