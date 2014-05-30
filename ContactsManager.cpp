@@ -54,7 +54,6 @@ void ContactsManager::createContact() {
 
 	string name;
 	cout << "Insert a name: ";
-	cin.ignore();
 	getline(cin, name);
 
 	string address;
@@ -65,9 +64,26 @@ void ContactsManager::createContact() {
 	cout << "Insert an email: ";
 	getline(cin, email);
 
-	int number;
-	cout << "Insert a phone number: ";
-	cin >> number;
+    int number = 0;
+	bool input_check = false;
+    
+    while(!input_check)
+    {
+        cout << "Insert a phone number: ";
+        
+        if(cin >> number)
+        {
+            cin.ignore(1000,'\n');
+            input_check = true;
+        }
+        else
+        {
+            cin.clear();
+            cin.ignore(1000,'\n');
+            cout << endl << "Phone number invalid." << endl;
+        }
+        
+    }
     
     //Adicionar uma verificacao para nome/numero/email ja existente
     Contact c1(name,"","",0);
