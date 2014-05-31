@@ -13,7 +13,7 @@
 #include "Util.h"
 #include "FileNotFound.h"
 
-#define MAX_EDIT_DIST 2
+#define MAX_EDIT_DIST 0
 
 using namespace std;
 
