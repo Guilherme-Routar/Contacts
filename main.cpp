@@ -23,6 +23,7 @@ void mainMenu(ContactsManager &contManag) {
         << "[4] Print Contact List" << endl
         << "[5] Exit" << endl << endl;
         
+        cout << endl << "Select your option: ";
 		getline(cin, option_str);
         option = atoi(option_str.c_str());
         

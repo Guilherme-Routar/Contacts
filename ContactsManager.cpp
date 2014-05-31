@@ -98,7 +98,7 @@ void ContactsManager::searchHelper(string &search_input)
         
         contactSearch search_cand;
         search_cand.contact_name = (*it).getName();
-        search_cand.editDist_name = util::minEditDistance(pattern, text);
+        search_cand.editDist = util::minEditDistance(pattern, text);
         
         search_queue.push(search_cand);
         
@@ -113,7 +113,8 @@ void ContactsManager::searchHelper(string &search_input)
         temp = search_queue.top();
         search_queue.pop();
         
-        cout << endl << temp.contact_name << " - " << temp.editDist_name;
+        cout << endl << temp.contact_name;
+        //<< " - " << temp.editDist;
         
         i++;
     }

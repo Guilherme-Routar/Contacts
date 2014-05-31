@@ -20,13 +20,11 @@ using namespace std;
 struct contactSearch
 {
     string contact_name;
-    int editDist_name;
-    int editDist_address;
-    int editDist_mail;
+    int editDist;
     
     bool operator<(const contactSearch &s1) const
     {
-        return editDist_name > s1.editDist_name;
+        return editDist > s1.editDist;
     }
     
 };
