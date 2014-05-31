@@ -14,7 +14,6 @@
 #include "FileNotFound.h"
 
 #define N_SEARCH_RESULTS 5
-#define CHAR_ERROR_TOLERANCE 0.2 // Value between 0 and 1
 
 using namespace std;
 

@@ -16,7 +16,7 @@ namespace util
     /**
      * Calculates the minimum edit distance between two string with character error tolerance
      */
-    int minEditDistance(string pattern, string text, double charErrorTol);
+    int minEditDistance(string pattern, string text);
     
     /**
      * String to lower case

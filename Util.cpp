@@ -45,21 +45,29 @@ namespace util
     
     //============================================================================
     
-    int minEditDistance(string pattern, string text, double charErrorTol)
+    int minEditDistance(string pattern, string text)
     {
-        int minEditDistance = editDistance(pattern, text);
+        int minEditDistance = INT_MAX;
         
-        
-        double errorText = (double) minEditDistance / text.length();
-        
-        if(errorText < charErrorTol)
+        if(pattern >= text)
         {
-            return 0;
+            minEditDistance = editDistance(pattern, text);
         }
         else
         {
-            return minEditDistance;
+            for(size_t i=pattern.length()-1;i<text.length();i++)
+            {
+                int tempDist = editDistance(pattern, text.substr(i-(pattern.length()-1),pattern.length()));
+                
+                if(tempDist < minEditDistance)
+                {
+                    minEditDistance = tempDist;
+                }
+            }
+            
         }
+        
+        return minEditDistance;
         
     }
     
