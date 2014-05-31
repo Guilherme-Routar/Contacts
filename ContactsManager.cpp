@@ -104,26 +104,20 @@ void ContactsManager::searchHelper(string &search_input)
         it++;
     }
     
-    bool no_results = true;
+    int i = 0;
     
-    while(!search_queue.empty())
+    while(!search_queue.empty() && i < N_SEARCH_RESULTS)
     {
         contactSearch temp;
         temp = search_queue.top();
         search_queue.pop();
         
-        if(temp.editDist > MAX_EDIT_DIST)
-        {
-            break;
-        }
-        else
-        {
-            cout << temp.contact_name << endl;
-            no_results = false;
-        }
+        cout << temp.contact_name << " = " << temp.editDist << endl;
+        i++;
+        
     }
     
-    if(no_results)
+    if(i == 0)
     {
         cout << "No search suggestions" << endl;
     }
