@@ -112,12 +112,12 @@ void ContactsManager::searchHelper(string &search_input)
         temp = search_queue.top();
         search_queue.pop();
         
-        if(temp.editDist >= pattern.length())
+        if(temp.editDist >= pattern.length() || temp.editDist >= temp.contact_name.length())
         {
             break;
         }
         
-        cout << temp.contact_name << " = " << temp.editDist << endl;
+        cout << temp.contact_name << endl;
         i++;
         
     }
