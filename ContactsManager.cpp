@@ -113,6 +113,11 @@ void ContactsManager::searchHelper(string &search_input)
         temp = search_queue.top();
         search_queue.pop();
         
+        if(temp.editDist > MAX_EDIT_DIST)
+        {
+            break;
+        }
+        
         cout << endl << temp.contact_name;
         
         i++;
