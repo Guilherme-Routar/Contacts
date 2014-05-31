@@ -49,7 +49,7 @@ namespace util
     {
         int minEditDistance = INT_MAX;
         
-        if(pattern >= text)
+        if(pattern.length() >= text.length())
         {
             minEditDistance = editDistance(pattern, text);
         }
