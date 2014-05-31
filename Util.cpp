@@ -55,18 +55,19 @@ namespace util
         }
         else
         {
-            for(size_t i=pattern.length()-1;i<text.length();i++)
+            for(int i=1;i<=text.length();i++)
             {
-                int tempDist = editDistance(pattern, text.substr(i-(pattern.length()-1),pattern.length()));
-                
-                if(tempDist < minEditDistance)
+                for(int j=0;j<i;j++)
                 {
-                    minEditDistance = tempDist;
+                    int tempDist = editDistance(pattern,text.substr(j,(i-j)));
+                    
+                    if(tempDist < minEditDistance)
+                    {
+                        minEditDistance = tempDist;
+                    }
                 }
             }
-            
         }
-        
         return minEditDistance;
         
     }

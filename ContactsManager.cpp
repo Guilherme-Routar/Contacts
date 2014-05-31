@@ -114,7 +114,6 @@ void ContactsManager::searchHelper(string &search_input)
         search_queue.pop();
         
         cout << endl << temp.contact_name;
-        //<< " - " << temp.editDist;
         
         i++;
     }

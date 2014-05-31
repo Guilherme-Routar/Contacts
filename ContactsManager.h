@@ -13,7 +13,7 @@
 #include "Util.h"
 #include "FileNotFound.h"
 
-#define N_SEARCH_RESULTS 10
+#define N_SEARCH_RESULTS 5
 
 using namespace std;
 
