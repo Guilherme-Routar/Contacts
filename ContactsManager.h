@@ -14,7 +14,7 @@
 #include "FileNotFound.h"
 
 #define N_SEARCH_RESULTS 5
-#define MAX_EDIT_DIST 2
+#define MAX_EDIT_DIST 1
 
 using namespace std;
 
