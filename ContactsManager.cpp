@@ -39,7 +39,7 @@ void ContactsManager::removeContact() {
     if(itf != contactList.end())
     {
         contactList.erase(itf);
-        cout << endl<< "Contact found and deleted." << endl;
+        cout << endl << "Contact found and deleted." << endl;
     }
     else
     {
@@ -57,7 +57,7 @@ void ContactsManager::searchContact() {
     
     while(!quit_search)
     {
-        cout << endl << endl << "Search: ";
+        cout << endl << ">>> Search: ";
         getline(cin, name);
         
         Contact c1(name,"","",0);
@@ -74,7 +74,6 @@ void ContactsManager::searchContact() {
         }
         else
         {
-            cout << endl << "Did you mean: ";
             searchHelper(name);
         }
     }
@@ -105,9 +104,9 @@ void ContactsManager::searchHelper(string &search_input)
         it++;
     }
     
-    int i = 0;
+    bool no_results = true;
     
-    while(!search_queue.empty() && (i < N_SEARCH_RESULTS))
+    while(!search_queue.empty())
     {
         contactSearch temp;
         temp = search_queue.top();
@@ -117,11 +116,18 @@ void ContactsManager::searchHelper(string &search_input)
         {
             break;
         }
-        
-        cout << endl << temp.contact_name;
-        
-        i++;
+        else
+        {
+            cout << temp.contact_name << endl;
+            no_results = false;
+        }
     }
+    
+    if(no_results)
+    {
+        cout << "No search suggestions" << endl;
+    }
+    
     
 }
 
