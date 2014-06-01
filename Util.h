@@ -30,27 +30,27 @@ namespace util
     int editDistance(const char *s, const char *t);
     
     /**
-     *
+     * row init initialize the zeroth row of the dynamic programming table
      */
     void row_init(int i);
     
     /**
-     *
+     * column init initialize the zeroth column of the dynamic programming table
      */
     void column_init(int i);
     
     /**
-     *
+     *  match(c,d) present the costs for transforming character c to d
      */
     int match(char c, char d);
     
     /**
-     *
+     * indel(c) present the costs for inserting/deleting character c
      */
     int indel(char c);
     
     /**
-     *
+     *  goal cell returns the indices of the cell marking the endpoint of the solution
      */
     void goal_cell(const char *s, const char *t, int *i, int *j);
 }
