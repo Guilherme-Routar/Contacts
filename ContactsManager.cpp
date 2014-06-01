@@ -104,8 +104,11 @@ void ContactsManager::searchHelper(string &search_input)
         }
         else
         {
-            const char* pattern_p = pattern.c_str();
-            const char* text_p = text.c_str();
+            string p_aux = " " + pattern;
+            string t_aux = " " + text;
+            
+            const char* pattern_p = p_aux.c_str();
+            const char* text_p = t_aux.c_str();
             search_cand.editDist = util::editDistance(pattern_p, text_p);
         }
         
