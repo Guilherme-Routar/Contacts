@@ -122,7 +122,7 @@ void ContactsManager::searchHelper(string &search_input)
         temp = search_queue.top();
         search_queue.pop();
         
-        if(temp.editDist >= pattern.length())
+        if(pattern.length() == 1 && temp.editDist > 0)
         {
             break;
         }
