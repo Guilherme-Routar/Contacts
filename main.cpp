@@ -5,6 +5,11 @@
 
 using namespace std;
 
+
+/**
+ * Generates the app main menu
+ */
+
 void mainMenu(ContactsManager &contManag) {
     
 	int option;

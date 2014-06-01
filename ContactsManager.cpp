@@ -186,7 +186,6 @@ void ContactsManager::createContact() {
         
     }
     
-    //Adicionar uma verificacao para nome/numero/email ja existente
     Contact c1(name,"","",0);
     HashContact::const_iterator itf = contactList.find(c1);
     

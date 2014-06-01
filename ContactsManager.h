@@ -18,6 +18,10 @@
 
 using namespace std;
 
+/**
+ * Struct contactSearch - Auxiliary struct for ordering contacts in terms of edit distance
+ */
+
 struct contactSearch
 {
     string contact_name;
@@ -29,6 +33,11 @@ struct contactSearch
     }
     
 };
+
+
+/**
+ * Struct contactHash - Essential functions for unordered set implementation
+ */
 
 struct contactHash
 {
@@ -69,7 +78,9 @@ struct contactHash
 
 typedef unordered_set<Contact, contactHash, contactHash> HashContact;
 
-//============================================================================
+/**
+ * ContactManager Class
+ */
 
 class ContactsManager {
 
@@ -89,22 +100,22 @@ public:
 	~ContactsManager();
     
 	/**
-	 * Returns the contacts
+	 * Returns the contacts unordered set
 	 */
 	HashContact getContacts() const;
     
     /**
-	 * * Creates a contact
+	 * Creates a contact
 	 */
 	void createContact();
     
 	/**
-	 * Removes contact from the contact list
+	 * Removes contact from the contacts unordered set
 	 */
 	void removeContact();
     
     /**
-     * Search contact on the contact list
+     * Search contact on the contacts unordered set
      */
     void searchContact();
     
