@@ -97,7 +97,17 @@ void ContactsManager::searchHelper(string &search_input)
         
         contactSearch search_cand;
         search_cand.contact_name = (*it).getName();
-        search_cand.editDist = util::minEditDistance(pattern, text);
+        
+        if(pattern.length() == 1)
+        {
+            search_cand.editDist = util::findCharInString(pattern, text);
+        }
+        else
+        {
+            const char* pattern_p = pattern.c_str();
+            const char* text_p = text.c_str();
+            search_cand.editDist = util::editDistance(pattern_p, text_p);
+        }
         
         search_queue.push(search_cand);
         
@@ -117,7 +127,7 @@ void ContactsManager::searchHelper(string &search_input)
             break;
         }
         
-        if(temp.editDist >= (temp.contact_name.length()*CHAR_ERROR_TOLERANCE))
+        if(temp.editDist >= (temp.contact_name.length() * CHAR_ERROR_TOLERANCE))
         {
             break;
         }
