@@ -127,7 +127,7 @@ void ContactsManager::searchHelper(string &search_input)
             break;
         }
         
-        if(temp.editDist >= (temp.contact_name.length() * CHAR_ERROR_TOLERANCE))
+        if(temp.editDist > (temp.contact_name.length() * CHAR_ERROR_TOLERANCE))
         {
             break;
         }
