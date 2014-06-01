@@ -12,6 +12,10 @@ private:
 	int number;
 
 public:
+    
+    /**
+     * Constructor
+     */
 	Contact(string name, string address, string email, int number);
 
 	/**
@@ -30,6 +34,9 @@ public:
 	void setEmail(string e) {email = e;}
 	void setNumber(int u) {number = u;}
 
+    /**
+     * Operator <<
+     */
 	friend ostream & operator<<(ostream &os, Contact out_cont);
 
 };
